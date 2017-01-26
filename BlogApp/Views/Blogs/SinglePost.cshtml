@@ -15,8 +15,8 @@
             @Model.Description <br />
             @foreach (var item in Model.Tags)
             {
-                <span class="btn btn-default tag-custom">
-                    @item.Title
+                <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("SearchBlogByTag","Blogs",new { id = item.Id,title = item.Title })'">
+                    @item.Title + @item.Famous
                 </span>
             }
         </div>

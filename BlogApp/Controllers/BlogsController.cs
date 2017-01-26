@@ -11,6 +11,7 @@ namespace BlogApp.Controllers
     public class BlogsController : Controller
     {
         BlogDbRepository repo = new BlogDbRepository();
+        [OutputCache(Duration =10)]
         public ActionResult Index()
         {
             List<Post> PostList = repo.GetPosts();
@@ -18,6 +19,7 @@ namespace BlogApp.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration =10)]
         public PartialViewResult Tags()
         {
             List<Tag> TagList = repo.GetTags();
@@ -25,11 +27,27 @@ namespace BlogApp.Controllers
             return PartialView("_TagBox", topTags);
         }
 
-        public PartialViewResult SearchBlog()
-        {
-            return PartialView("_SearchBox");
-        }
 
+        public ActionResult SearchBlog(string input)
+        {
+            if (input != null)
+            {
+                ViewBag.searchInput = input;
+                List<Post> searchedPosts = repo.SearchPostByTitle(input);
+                return View("SearchResult", searchedPosts);
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult SearchBlogByTag(int id,string title)
+        {
+            if (id.ToString() !=null)
+            {
+                ViewBag.searchInput = title;
+                List<Post> searchedPosts = repo.SearchPostByCategory(id);
+                return View("SearchResult", searchedPosts);
+            }
+            return RedirectToAction("Index");
+        }
 
         /// <summary>
         /// returns a single blog

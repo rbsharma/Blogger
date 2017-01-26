@@ -179,6 +179,7 @@
     <Content Include="Views\Shared\_TagBox.cshtml" />
     <Content Include="Views\Shared\_SearchBox.cshtml" />
     <Content Include="Views\Blogs\SinglePost.cshtml" />
+    <Content Include="Views\Blogs\SearchResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

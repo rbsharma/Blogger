@@ -1,0 +1,30 @@
+﻿@using BlogApp.Models
+@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "Search Results";
+}
+<h2>
+    Found <b>
+        @Model.Count().ToString()
+    </b> results for <b>
+        @ViewBag.searchInput
+    </b>
+</h2>
+
+@foreach (var item in Model)
+{
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" onclick="location.href='@Url.Action("Blog","Blogs",new { id = item.Id })'">
+        <div class="panel panel-primary content">
+            <div class="panel-heading">
+                @item.Title
+            </div>
+            <div class="panel-body panel-body-custom">
+                @item.Description
+            </div>
+            <div class="panel-footer">
+                @item.PublishedAt
+            </div>
+        </div>
+    </div>
+}
