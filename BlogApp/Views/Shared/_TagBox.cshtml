@@ -1,0 +1,23 @@
+﻿@using BlogApp.Models
+@model IEnumerable<Tag>
+
+@{
+    ViewBag.Title = "TagBox";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading tagbox-custom-header">
+        POPULAR TOPICS
+    </div>
+    <div class="panel-body">
+        @foreach (var item in Model)
+            {
+            <span class="btn btn-default tag-custom">
+                @item.Title
+            </span>
+        }
+    </div>
+    @*<div class="panel-footer">
+        This is tag section
+    </div>*@
+</div>
