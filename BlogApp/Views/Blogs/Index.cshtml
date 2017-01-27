@@ -4,6 +4,17 @@
 @{
     ViewBag.Title = "Index";
 }
+@if (ViewBag.searchInput != null)
+{
+    <h2>
+        Found <b>
+            @Model.Count().ToString()
+        </b> results for <b>
+            @ViewBag.searchInput
+        </b>
+    </h2>
+}
+
 
 @foreach (var item in Model)
 {

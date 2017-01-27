@@ -3,6 +3,10 @@
     padding-bottom: 20px;
     /*background-color: #BDBDBD !important;*/
 }
+::selection{
+    color:white !important;
+    background-color:#337ab7 !important;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

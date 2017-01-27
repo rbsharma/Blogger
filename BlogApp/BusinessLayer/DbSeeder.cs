@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using BlogApp.Models;
 using System.Data.Entity;
+using BlogApp.Helpers;
 
 namespace BlogApp.BusinessLayer
 {
@@ -15,23 +16,27 @@ namespace BlogApp.BusinessLayer
             {
                 new User()
                 {
-                    Name = "FIRST USER",
-                    Email = "FIRSTUSER@FIRSTUSER.COM"
+                    Name = "FIRSTUSER",
+                    Email = "FIRSTUSER@FIRSTUSER.COM",
+                    Password = Hasher.GetSha256Hash("one")
                 },
                 new User()
                 {
-                    Name = "SECOND USER",
-                    Email = "SECONDUSER@SECONDUSER.COM"
+                    Name = "SECONDUSER",
+                    Email = "SECONDUSER@SECONDUSER.COM",
+                    Password = Hasher.GetSha256Hash("two")
                 },
                 new User()
                 {
-                    Name = "THIRD USER",
-                    Email = "THIRDTUSER@THIRDUSER.COM"
+                    Name = "THIRDUSER",
+                    Email = "THIRDTUSER@THIRDUSER.COM",
+                    Password = Hasher.GetSha256Hash("three")
                 },
                 new User()
                 {
-                    Name = "FOURTH USER",
-                    Email = "FOURTHUSER@FOURTHUSER.COM"
+                    Name = "FOURTHUSER",
+                    Email = "FOURTHUSER@FOURTHUSER.COM",
+                    Password = Hasher.GetSha256Hash("four")
                 },
             };
 

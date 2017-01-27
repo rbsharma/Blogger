@@ -12,7 +12,7 @@
     <div class="panel-body">
         @foreach (var item in Model)
             {
-            <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("SearchBlogByTag","Blogs",new { id = item.Id,title = item.Title })'">
+            <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("Category","Blogs",new { id = item.Id,title = item.Title })'">
                 @item.Title - @item.Famous
             </span>
         }

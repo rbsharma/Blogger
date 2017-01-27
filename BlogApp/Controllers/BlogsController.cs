@@ -11,6 +11,7 @@ namespace BlogApp.Controllers
     public class BlogsController : Controller
     {
         BlogDbRepository repo = new BlogDbRepository();
+
         [OutputCache(Duration =10)]
         public ActionResult Index()
         {
@@ -34,17 +35,17 @@ namespace BlogApp.Controllers
             {
                 ViewBag.searchInput = input;
                 List<Post> searchedPosts = repo.SearchPostByTitle(input);
-                return View("SearchResult", searchedPosts);
+                return View("Index", searchedPosts);
             }
             return RedirectToAction("Index");
         }
-        public ActionResult SearchBlogByTag(int id,string title)
+        public ActionResult Category(int id,string title)
         {
             if (id.ToString() !=null)
             {
                 ViewBag.searchInput = title;
                 List<Post> searchedPosts = repo.SearchPostByCategory(id);
-                return View("SearchResult", searchedPosts);
+                return View("Index", searchedPosts);
             }
             return RedirectToAction("Index");
         }
