@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="BusinessLayer\DbSeeder.cs" />
     <Compile Include="Helpers\AuthManager.cs" />
+    <Compile Include="Helpers\CustomAuthentication.cs" />
     <Compile Include="Helpers\Hasher.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -188,6 +189,8 @@
     <Content Include="Views\Blogs\SinglePost.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Shared\_FixedRightBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

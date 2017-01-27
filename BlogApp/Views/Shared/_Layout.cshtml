@@ -27,24 +27,7 @@
 
     <div class="container-fluid">
         <div class="row" style="margin-top:100px;">
-            <div class="col-xs-12 col-md-9">
-                @RenderBody()
-            </div>
-
-            <div class="hidden-xs hidden-sm visible-md-block col-md-3 visible-lg-block col-lg-3 fixed-bar-right">
-                <div class="panel panel-danger no-radius" style="padding-left:0;padding-right:0">
-                    <div class="panel-body">
-                        <div id="searchdiv">
-                            @{ Html.RenderPartial("_SearchBox");}
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div id="tagDiv">
-                            @{ Html.RenderAction("Tags", "Blogs");}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @RenderBody()
         </div>
 
         <hr />

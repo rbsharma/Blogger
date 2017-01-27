@@ -1,0 +1,12 @@
+﻿<div class="panel panel-danger no-radius" style="padding-left:0;padding-right:0">
+    <div class="panel-body">
+        <div id="searchdiv">
+            @{ Html.RenderPartial("_SearchBox");}
+        </div>
+    </div>
+    <div class="panel-body">
+        <div id="tagDiv">
+            @{ Html.RenderAction("Tags", "Blogs");}
+        </div>
+    </div>
+</div>

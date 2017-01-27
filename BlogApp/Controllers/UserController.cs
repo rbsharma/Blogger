@@ -9,7 +9,7 @@ using BlogApp.Models.ViewModel;
 
 namespace BlogApp.Controllers
 {
-    
+    [CustomAuthorization]
     public class UserController : Controller
     {
 

@@ -14,7 +14,7 @@ namespace BlogApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            Database.SetInitializer(new BlogApp.BusinessLayer.DbSeeder());
+            //Database.SetInitializer(new BlogApp.BusinessLayer.DbSeeder());
         }
     }
 }

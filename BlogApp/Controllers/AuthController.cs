@@ -69,5 +69,19 @@ namespace BlogApp.Controllers
             }
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult Logout()
+        {
+            if (Request.Cookies["auth"] != null)
+            {
+                Request.Cookies["auth"].Expires = DateTime.Now.AddDays(-1);
+                ViewBag.logout = "Successfully Logged out";
+                return RedirectToAction("Index", "Blog");
+            }
+            return RedirectToAction("Index", "Blog");
+        }
     }
+
+    
 }
