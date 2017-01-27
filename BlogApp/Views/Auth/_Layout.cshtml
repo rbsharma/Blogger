@@ -20,8 +20,6 @@
                 @Html.ActionLink("BLOGGER", "Index", "Blogs", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @Html.ActionLink("LOGIN", "Login", "Auth", new { area = "" }, new { @class = "navbar-brand" })  
-                @Html.ActionLink("REGISTER", "Register", "Auth", new { area = "" }, new { @class = "navbar-brand"})
                 <ul class="nav navbar-nav"></ul>
             </div>
         </div>
@@ -29,9 +27,20 @@
 
     <div class="container-fluid">
         <div class="row" style="margin-top:100px;">
-            @RenderBody()
+            <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 text-center content-login" style="border:solid;padding:15px;">
+                <div class="col-xs-12">
+                    @RenderBody()
+                </div>
+                @*<div class="col-xs-12 col-sm-6">
+                    <h3>
+                        Social Connect<br />
+                    </h3>
+                    @Html.ActionLink("REGISTER", "Register", "Auth", new { area = "" }, new { @class = "navbar-brand" })
+                </div>*@
+            </div>
         </div>
 
+        
         <footer class="sticky-footer">
             <hr />
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

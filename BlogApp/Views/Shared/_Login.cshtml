@@ -1,0 +1,22 @@
+﻿@using BlogApp.Models.ViewModel
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Auth/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    <hr />
+    @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
+    @Html.ValidationMessageFor(m => m.Username);
+    <br />
+    @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
+    @Html.ValidationMessageFor(m => m.Password)
+    <br />
+    <input type="submit" class="btn btn-danger" value="LOGIN" />
+    @Html.ActionLink("REGISTER", "Register", "Auth", new { area = "" }, new { @class = "btn btn-danger" })
+}

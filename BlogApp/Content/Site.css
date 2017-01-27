@@ -13,14 +13,21 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.sticky-footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
-
+.col-centered{
+    margin:0 auto !important;
+    float:none;
+}
 .remove-margin {
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -40,6 +47,19 @@ textarea {
         cursor: pointer;
         transition: 0.2s all;
         opacity: 0.8;
+    }
+.content-login {
+    -webkit-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
+    -moz-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
+    box-shadow: 0 5px 5px rgba(84, 79, 79, 1) !important;
+    background-color: #fff;
+}
+
+    .content-login:hover, .content-login:focus {
+        -webkit-box-shadow: 0 10px 10px rgba(84, 79, 79, 1) !important;
+        -moz-box-shadow: 0 10px 10px rgba(84, 79, 79, 1) !important;
+        box-shadow: 0 10px 10px rgba(84, 79, 79, 1) !important;
+        transition: 0.2s all;
     }
 
 .panel-primary {

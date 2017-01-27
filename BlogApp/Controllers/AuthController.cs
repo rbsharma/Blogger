@@ -24,7 +24,7 @@ namespace BlogApp.Controllers
             {
                 return RedirectToAction("Index", "Blogs");
             }
-            return View();
+            return PartialView("_Login");
         }
 
         [HttpPost]
@@ -39,10 +39,10 @@ namespace BlogApp.Controllers
                 else
                 {
                     ModelState.AddModelError("Login Failure", "Username or Password is incorrect");
-                    return View();
+                    return View("_Login");
                 }
             }
-            return View();
+            return View("_Login");
 
         }
 
@@ -53,7 +53,7 @@ namespace BlogApp.Controllers
             {
                 return RedirectToAction("Index", "Blogs");
             }
-            return View();
+            return PartialView("_Register");
         }
 
         [HttpPost]
@@ -68,10 +68,10 @@ namespace BlogApp.Controllers
                 else
                 {
                     ModelState.AddModelError("Registeration Failure", "UserName Exists");
-                    return View();
+                    return View("_Register");
                 }
             }
-            return View();
+            return View("_Register");
         }
 
         [ChildActionOnly]
