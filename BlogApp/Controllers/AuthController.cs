@@ -49,6 +49,10 @@ namespace BlogApp.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            if (Request.Cookies["auth"] != null)
+            {
+                return RedirectToAction("Index", "Blogs");
+            }
             return View();
         }
 
