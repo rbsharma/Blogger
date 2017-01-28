@@ -11,12 +11,6 @@ namespace BlogApp.Controllers
     [AllowAnonymous]
     public class AuthController : Controller
     {
-        // GET: Auth
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Login()
         {
@@ -39,10 +33,10 @@ namespace BlogApp.Controllers
                 else
                 {
                     ModelState.AddModelError("Login Failure", "Username or Password is incorrect");
-                    return View("_Login");
+                    return PartialView("_Login");
                 }
             }
-            return View("_Login");
+            return PartialView("_Login");
 
         }
 
@@ -67,11 +61,11 @@ namespace BlogApp.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Registeration Failure", "UserName Exists");
-                    return View("_Register");
+                    ViewBag.regFailure = "Username Exists";
+                    return PartialView("_Register");
                 }
             }
-            return View("_Register");
+            return PartialView("_Register");
         }
 
         [ChildActionOnly]

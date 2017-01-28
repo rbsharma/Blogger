@@ -1,25 +1,36 @@
 ﻿@using BlogApp.Models.ViewModel
 @model RegisterViewModel
 @{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Auth/_Layout.cshtml";
+    ViewBag.Title = "REGISTER";
+    Layout = "~/Views/Auth/_LayoutAuth.cshtml";
 }
+<div id="target">
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 text-center content-login" style="border:solid;padding:15px;">
+        <h2>REGISTER</h2>
 
-<h2>REGISTER</h2>
-
-@using (Html.BeginForm("Register", "Auth", FormMethod.Post))
-{
-    @Html.ValidationSummary()
-    <hr />
-        @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
-    @Html.ValidationMessageFor(m => m.Username);
-    <br />
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-centered", placeholder = "Email" });
-    @Html.ValidationMessageFor(m => m.Email)
-    <br />
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
-    @Html.ValidationMessageFor(m => m.Password)
-    <br />
-        <input type="submit" class="btn btn-danger" value="REGISTER" />
-        @Html.ActionLink("LOGIN", "Login", "Auth", new { area = "" }, new { @class = "btn btn-danger" })
-}
+        @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
+            {
+            <hr />
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "failMessage" })
+            if (ViewBag.regFailure != null)
+            {
+                <span class="failMessage">@ViewBag.regFailure</span>
+            }
+            <br />
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-centered", placeholder = "Email" });
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "failMessage" })
+            <br />
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "failMessage" })
+            <br />
+            <input type="submit" class="btn btn-danger no-radius" value="REGISTER" />
+            @Ajax.ActionLink("LOGIN", "Login", "Auth", null, new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "target"
+        }, new { @class = "btn btn-danger no-radius" })
+        }
+    </div>
+</div>

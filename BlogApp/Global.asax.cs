@@ -1,9 +1,11 @@
-﻿using System;
+﻿using BlogApp.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace BlogApp
@@ -15,6 +17,8 @@ namespace BlogApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //Database.SetInitializer(new BlogApp.BusinessLayer.DbSeeder());
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
