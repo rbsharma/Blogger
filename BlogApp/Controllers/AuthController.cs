@@ -28,6 +28,7 @@ namespace BlogApp.Controllers
             {
                 if (AuthManager.VerifyLogin(model))
                 {
+                    Session["user"] = model.Username;
                     return RedirectToAction("Index", "Blogs");
                 }
                 else
@@ -57,6 +58,7 @@ namespace BlogApp.Controllers
             {
                 if (AuthManager.RegisterUser(model))
                 {
+                    Session["user"] = model.Username;
                     return RedirectToAction("Index", "Blogs");
                 }
                 else
@@ -68,18 +70,18 @@ namespace BlogApp.Controllers
             return PartialView("_Register");
         }
 
-        [ChildActionOnly]
         public ActionResult Logout()
         {
             if (Request.Cookies["auth"] != null)
             {
-                Request.Cookies["auth"].Expires = DateTime.Now.AddDays(-1);
+                AuthManager.CookieClear();
+
                 ViewBag.logout = "Successfully Logged out";
-                return RedirectToAction("Index", "Blog");
+                return RedirectToAction("Index", "Blogs");
             }
-            return RedirectToAction("Index", "Blog");
+            return RedirectToAction("Index", "Blogs");
         }
     }
 
-    
+
 }

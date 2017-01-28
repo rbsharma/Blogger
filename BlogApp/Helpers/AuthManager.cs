@@ -47,5 +47,19 @@ namespace BlogApp.Helpers
             HttpContext.Current.Response.Cookies.Add(auth);
         }
 
+        public static void CookieClear()
+        {            
+            HttpCookie authCookie = HttpContext.Current.Request.Cookies["auth"];
+            authCookie.Expires = DateTime.Now.AddDays(-1);
+
+            HttpCookie sessionCookie = HttpContext.Current.Request.Cookies["ASP.NET_SessionId"];
+            sessionCookie.Expires = DateTime.Now.AddDays(-1);
+
+            HttpContext.Current.Response.Cookies.Add(authCookie);
+            HttpContext.Current.Response.Cookies.Add(sessionCookie);
+
+            HttpContext.Current.Session.Abandon();
+        }
+
     }
 }
