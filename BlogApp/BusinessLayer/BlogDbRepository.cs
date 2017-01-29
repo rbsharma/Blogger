@@ -44,6 +44,27 @@ namespace BlogApp.BusinessLayer
             return db.Tags.OrderByDescending(x => x.Famous).ToList();
         }
 
+        public int GetUserId(string username)
+        {
+            return db.Users.FirstOrDefault(x => x.Name == username).Id;
+        }
+        public bool InsertPost(string title,string description,int userid)
+        {
+            if(!(string.IsNullOrEmpty(title) && string.IsNullOrEmpty(description)))
+            {
+                Post newPost = new Post();
+                newPost.Title = title;
+                newPost.Description = description;
+                newPost.PublishedAt = DateTime.Now;
+                newPost.User = db.Users.Find(userid);
+
+                db.Posts.Add(newPost);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public bool Login(string username, string password)
         {
             password = Hasher.GetSha256Hash(password);

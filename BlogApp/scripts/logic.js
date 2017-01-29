@@ -2,7 +2,7 @@
     $("#logout_message").css({ "display": "none", "transition": "2s" });
     var typingtimer;
 
-    $('#Username').keyup(function () {
+    $('.userExistcheck').keyup(function () {
         var self = $(this);
         clearTimeout(typingtimer);
         if (self.val().length > 4) {

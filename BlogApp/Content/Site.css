@@ -127,3 +127,9 @@ textarea {
 .successMessage{
     color:forestgreen;
 }
+.full-width{
+    max-width:100% !important;
+}
+.textarea-custom{
+    min-height:300px;
+}

@@ -30,7 +30,7 @@ namespace BlogApp.Controllers
                 if (AuthManager.VerifyLogin(model))
                 {
                     Session["user"] = model.Username;
-                    return RedirectToAction("Index", "Blogs");
+                    return RedirectToActionPermanent("Index", "Blogs");
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace BlogApp.Controllers
                 if (AuthManager.RegisterUser(model))
                 {
                     Session["user"] = model.Username;
-                    return RedirectToAction("Index", "Blogs");
+                    return RedirectToActionPermanent("Index", "Blogs");
                 }
                 else
                 {
@@ -84,9 +84,9 @@ namespace BlogApp.Controllers
                 AuthManager.CookieClear();
 
                 ViewBag.logout = "Successfully Logged out";
-                return RedirectToAction("Index", "Blogs");
+                return RedirectToActionPermanent("Index", "Blogs");
             }
-            return RedirectToAction("Index", "Blogs");
+            return RedirectToActionPermanent("Index", "Blogs");
         }
     }
 

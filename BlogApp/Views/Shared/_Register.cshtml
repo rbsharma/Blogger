@@ -20,7 +20,7 @@
         {
 
             <hr />
-            @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered userExistcheck", placeholder = "Username" });
             <span id="dynamicUsername" style="font-weight:bold"></span>
             @Html.ValidationMessageFor(m => m.Username, "", new { @class = "failMessage" })
             @Html.ValidationMessage("RegistrationFailure", new { @class = "failMessage" })
