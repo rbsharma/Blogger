@@ -6,17 +6,24 @@
 }
 <div id="target">
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 text-center content-login" style="border:solid;padding:15px;">
+        <div id="overlayDiv" class="overlay" style="display:none"></div>
         <h2>REGISTER</h2>
 
-        @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
-            {
+        @using (Ajax.BeginForm("Register", "Auth", null, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "target",
+            InsertionMode = InsertionMode.Replace,
+            OnBegin = "showOverlay",
+            OnComplete = "hideOverlay"
+        }, new { id = "registrationForm" }))
+        {
+
             <hr />
             @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
+            <span id="dynamicUsername" style="font-weight:bold"></span>
             @Html.ValidationMessageFor(m => m.Username, "", new { @class = "failMessage" })
-            if (ViewBag.regFailure != null)
-            {
-                <span class="failMessage">@ViewBag.regFailure</span>
-            }
+            @Html.ValidationMessage("RegistrationFailure", new { @class = "failMessage" })
             <br />
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-centered", placeholder = "Email" });
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "failMessage" })
@@ -26,11 +33,13 @@
             <br />
             <input type="submit" class="btn btn-danger no-radius" value="REGISTER" />
             @Ajax.ActionLink("LOGIN", "Login", "Auth", null, new AjaxOptions()
-        {
-            HttpMethod = "GET",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "target"
-        }, new { @class = "btn btn-danger no-radius" })
+       {
+           HttpMethod = "GET",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "target",
+           OnBegin = "showOverlay",
+           OnComplete = "hideOverlay"
+       }, new { @class = "btn btn-danger no-radius" })
         }
     </div>
 </div>

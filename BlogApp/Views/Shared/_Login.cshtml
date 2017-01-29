@@ -4,59 +4,39 @@
     ViewBag.Title = "LOGIN";
     Layout = "~/Views/Auth/_LayoutAuth.cshtml";
 }
+
 <div id="target">
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 text-center content-login" style="border:solid;padding:15px;">
+        <div id="overlayDiv" class="overlay" style="display:none"></div>
         <h2>LOGIN</h2>
 
-        @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
-            {
+        @using (Ajax.BeginForm("Login", "Auth", null, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "target",
+            InsertionMode = InsertionMode.Replace,
+            OnBegin = "showOverlay",
+            OnComplete = "hideOverlay"
+        }, new { id = "loginForm" }))
+        {
             <hr />
             @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
             @Html.ValidationMessageFor(m => m.Username, "", new { @class = "failMessage" })
+            @Html.ValidationMessage("LoginFailure", new { @class = "failMessage" })
             <br />
             @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "failMessage" })
             <br />
             <input type="submit" class="btn btn-danger no-radius" value="LOGIN" />
 
-                @Ajax.ActionLink("REGISTER", "Register", "Auth", null, new AjaxOptions()
-           {
-               HttpMethod = "GET",
-               InsertionMode = InsertionMode.Replace,
-               UpdateTargetId = "target"
-           }, new { @class = "btn btn-danger no-radius" })
+            @Ajax.ActionLink("REGISTER", "Register", "Auth", null, new AjaxOptions()
+       {
+           HttpMethod = "GET",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "target",
+           OnBegin = "showOverlay",
+           OnComplete = "hideOverlay"
+       }, new { @class = "btn btn-danger no-radius" })
         }
-
-        @*-------------------------------------------------------*@
-        @*@using (Ajax.BeginForm("Login", "Auth", null, new AjaxOptions()
-            {
-                HttpMethod = "POST",
-                LoadingElementId = "loader",
-                OnFailure = "FuncFailure"
-            }))
-            {
-                <hr />
-                @Html.TextBoxFor(m => m.Username, new { @class = "form-control col-centered", placeholder = "Username" });
-                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "failMessage" })
-                <br />
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "failMessage" })
-                <br />
-                <input type="submit" class="btn btn-danger no-radius" value="LOGIN" />
-
-                    @Ajax.ActionLink("REGISTER", "Register", "Auth", null, new AjaxOptions()
-               {
-                   HttpMethod = "GET",
-                   InsertionMode = InsertionMode.Replace,
-                   UpdateTargetId = "target"
-               }, new { @class = "btn btn-danger no-radius" })
-            }*@
     </div>
 </div>
-
-@*<script>
-        function FuncFailure(error) {
-            debugger;
-            console.log(error);
-        }
-    </script>*@

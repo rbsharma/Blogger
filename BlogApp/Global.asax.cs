@@ -18,7 +18,7 @@ namespace BlogApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //Database.SetInitializer(new BlogApp.BusinessLayer.DbSeeder());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

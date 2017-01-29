@@ -3,9 +3,10 @@
     padding-bottom: 20px;
     /*background-color: #BDBDBD !important;*/
 }
-::selection{
-    color:white !important;
-    background-color:#337ab7 !important;
+
+::selection {
+    color: white !important;
+    background-color: #337ab7 !important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -13,9 +14,10 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-.sticky-footer{
-    bottom:0;
-    width:100%;
+
+.sticky-footer {
+    bottom: 0;
+    width: 100%;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -23,13 +25,27 @@ select,
 textarea {
     max-width: 280px;
 }
-.col-centered{
-    margin:0 auto !important;
-    float:none;
+
+.col-centered {
+    margin: 0 auto !important;
+    float: none;
 }
+
 .remove-margin {
     margin-left: 0px !important;
     margin-right: 0px !important;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.60);
+    z-index: 9999;
+    color: white;
+    display: inline-block;
 }
 
 .content {
@@ -47,6 +63,7 @@ textarea {
         transition: 0.2s all;
         opacity: 0.8;
     }
+
 .content-login {
     -webkit-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
     -moz-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
@@ -99,9 +116,14 @@ textarea {
 .tag-custom {
     margin: 3px !important;
 }
-.no-radius{
-    border-radius:0 !important;
+
+.no-radius {
+    border-radius: 0 !important;
 }
-.failMessage{
-    color:red;
+
+.failMessage {
+    color: red;
+}
+.successMessage{
+    color:forestgreen;
 }

@@ -71,6 +71,11 @@ namespace BlogApp.BusinessLayer
                 return true;
             }
         }
+        public bool UserExists(string input)
+        {
+            bool exists = db.Users.Any(x => x.Name == input);
+            return exists;
+        }
 
 
     }

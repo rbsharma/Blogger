@@ -11,22 +11,26 @@ namespace BlogApp.Helpers
     {
         static BlogDbRepository repo = new BlogDbRepository();
 
+        public static bool VerifyUsername(string _username)
+        {
+            return repo.UserExists(_username);
+        }
         public static bool VerifyLogin(LoginViewModel model)
         {
-                if(repo.Login(model.Username, model.Password))
-                {
-                    CookieCreator(model.Username);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+            if (repo.Login(model.Username, model.Password))
+            {
+                CookieCreator(model.Username);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static bool RegisterUser(RegisterViewModel model)
         {
-            if(repo.Register(model.Username, model.Password, model.Email))
+            if (repo.Register(model.Username, model.Password, model.Email))
             {
                 CookieCreator(model.Username);
                 return true;
@@ -48,7 +52,7 @@ namespace BlogApp.Helpers
         }
 
         public static void CookieClear()
-        {            
+        {
             HttpCookie authCookie = HttpContext.Current.Request.Cookies["auth"];
             authCookie.Expires = DateTime.Now.AddDays(-1);
 

@@ -3,6 +3,7 @@ using BlogApp.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,7 +34,7 @@ namespace BlogApp.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Login Failure", "Username or Password is incorrect");
+                    ModelState.AddModelError("LoginFailure", "Username or Password is incorrect");
                     return PartialView("_Login");
                 }
             }
@@ -63,11 +64,17 @@ namespace BlogApp.Controllers
                 }
                 else
                 {
-                    ViewBag.regFailure = "Username Exists";
+                    ModelState.AddModelError("RegistrationFailure", "Username Exists");
                     return PartialView("_Register");
                 }
             }
             return PartialView("_Register");
+        }
+
+        [HttpPost]
+        public bool ValidateUsername(string _username)
+        {
+            return AuthManager.VerifyUsername(_username);  
         }
 
         public ActionResult Logout()
