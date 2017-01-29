@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - BLOGGER</title>
+    <title>@ViewBag.Title - BLOGGER APP</title>
     @Styles.Render("~/bundles/styles")
 </head>
 <body style="font-family:monospace">
@@ -23,8 +23,7 @@
                     @if (Request.Cookies["auth"] != null)
                     {
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                @Session["user"]
+                            <a id="user_name" class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -71,7 +70,7 @@
 
         <footer class="sticky-footer">
             <hr />
-            <p>&copy; @DateTime.Now.Year - BLOGGER</p>
+            <p>&copy; @DateTime.Now.Year - BLOGGER APP</p>
         </footer>
     </div>
 

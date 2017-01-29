@@ -8,21 +8,23 @@
 @*Left Container*@
 <div class="col-xs-12 col-md-9">
     <div class="col-xs-12">
-        <div class="panel panel-primary content">
+        <div class="panel panel-primary content-singlepost">
             <div class="panel-heading">
-                @Model.Title
+                <b>@Model.Title</b>
             </div>
-            <div class="panel-body panel-body-custom" style="min-height:400px">
+            <div class="panel-body" style="min-height:280px">
                 @Model.Description <br />
+            </div>
+            <div class="panel-footer">
                 @foreach (var item in Model.Tags)
-            {
+                {
                     <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("Category","Blogs",new { id = item.Id,title = item.Title })'">
                         @item.Title + @item.Famous
                     </span>
                 }
             </div>
             <div class="panel-footer">
-                <b>@Model.User.Name</b>| @Model.PublishedAt 
+                <b>@Model.User.Name</b>| @Model.PublishedAt
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@ namespace BlogApp.BusinessLayer
 
         public List<Post> GetPosts()
         {
-            return db.Posts.ToList();
+            return db.Posts.OrderByDescending(x=>x.PublishedAt).ToList();
         }
 
         public Post GetSinglePost(int id)
@@ -29,14 +29,15 @@ namespace BlogApp.BusinessLayer
         public List<Post> SearchPostByTitle(string input)
         {
             input = input.ToLower();
-            return db.Posts.Where(x => x.Title.ToLower().Contains(input)).ToList();
+            return db.Posts.Where(x => x.Title.ToLower().Contains(input)).OrderByDescending(x=>x.PublishedAt).ToList();
         }
 
         public List<Post> SearchPostByCategory(int id)
         {
             db.Tags.Find(id).Famous += 1;
             db.SaveChanges();
-            return db.Posts.Where(x => x.Tags.FirstOrDefault(y => y.Id == id).Id == id).ToList();
+            return db.Posts.Where(x => x.Tags.FirstOrDefault(y => y.Id == id).Id == id)
+                            .OrderByDescending(x=>x.PublishedAt).ToList();
         }
 
         public List<Tag> GetTags()
@@ -47,6 +48,10 @@ namespace BlogApp.BusinessLayer
         public int GetUserId(string username)
         {
             return db.Users.FirstOrDefault(x => x.Name == username).Id;
+        }
+        public string GetUserName(int userid)
+        {
+            return db.Users.Find(userid).Name;
         }
         public bool InsertPost(string title,string description,int userid)
         {

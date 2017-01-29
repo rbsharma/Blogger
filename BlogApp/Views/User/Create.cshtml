@@ -12,10 +12,9 @@
             @using (Ajax.BeginForm("AddPost", "User", null, new AjaxOptions()
             {
                 HttpMethod = "POST",
-                UpdateTargetId = "target",
                 InsertionMode = InsertionMode.Replace,
                 OnBegin = "showOverlay",
-                OnComplete = "hideOverlay"
+                OnComplete = "hideOverlay;setTimeout(window.location.replace('/Blogs/Index'),2000);"
             }, new { id = "newBlogForm" }))
             {
 

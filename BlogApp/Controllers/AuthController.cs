@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace BlogApp.Controllers
 {
@@ -30,7 +31,7 @@ namespace BlogApp.Controllers
                 if (AuthManager.VerifyLogin(model))
                 {
                     Session["user"] = model.Username;
-                    return RedirectToActionPermanent("Index", "Blogs");
+                    return RedirectToAction("Index", "Blogs");
                 }
                 else
                 {
@@ -60,7 +61,7 @@ namespace BlogApp.Controllers
                 if (AuthManager.RegisterUser(model))
                 {
                     Session["user"] = model.Username;
-                    return RedirectToActionPermanent("Index", "Blogs");
+                    return RedirectToAction("Index", "Blogs");
                 }
                 else
                 {
@@ -74,7 +75,7 @@ namespace BlogApp.Controllers
         [HttpPost]
         public bool ValidateUsername(string _username)
         {
-            return AuthManager.VerifyUsername(_username);  
+            return AuthManager.VerifyUsername(_username);
         }
 
         public ActionResult Logout()
@@ -84,11 +85,17 @@ namespace BlogApp.Controllers
                 AuthManager.CookieClear();
 
                 ViewBag.logout = "Successfully Logged out";
-                return RedirectToActionPermanent("Index", "Blogs");
+                return RedirectToAction("Index", "Blogs");
             }
-            return RedirectToActionPermanent("Index", "Blogs");
+            return RedirectToAction("Index", "Blogs");
+        }
+
+        public JsonResult GetUsername(string userid)
+        {
+            string name = AuthManager.Username(Convert.ToInt32(userid));
+            return Json(name);
         }
     }
-
-
 }
+
+

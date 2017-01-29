@@ -35,7 +35,8 @@ namespace BlogApp.Controllers
                 if (isPostAdded)
                 {
                     ViewBag.addstatus = "Succesfully Added";
-                    return View("Create");
+                    return RedirectToAction("Index", "Blogs");
+                    //return View("Create");
                 }
                 ModelState.AddModelError("PostAddFailure", "An error occured, please try again..");
             }

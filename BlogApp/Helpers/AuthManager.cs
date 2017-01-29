@@ -75,5 +75,10 @@ namespace BlogApp.Helpers
             HttpContext.Current.Session.Abandon();
         }
 
+        public static string Username(int id)
+        {
+            return repo.GetUserName(id);
+        }
+
     }
 }
