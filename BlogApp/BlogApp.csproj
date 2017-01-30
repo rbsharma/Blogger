@@ -160,6 +160,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\letspost - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\letspost - Web Deploy.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -192,6 +194,11 @@
     <Compile Include="Helpers\AuthManager.cs" />
     <Compile Include="Helpers\CustomAuthentication.cs" />
     <Compile Include="Helpers\Hasher.cs" />
+    <Compile Include="Migrations\201701271727018_InitialCreate.cs" />
+    <Compile Include="Migrations\201701271727018_InitialCreate.Designer.cs">
+      <DependentUpon>201701271727018_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -231,6 +238,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701271727018_InitialCreate.resx">
+      <DependentUpon>201701271727018_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
