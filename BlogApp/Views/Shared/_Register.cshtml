@@ -31,6 +31,9 @@
             @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "failMessage" })
             <br />
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control col-centered", placeholder = "Retype Password" });
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "failMessage" })
+        <br />
             <input type="submit" class="btn btn-danger no-radius" value="REGISTER" />
             @Ajax.ActionLink("LOGIN", "Login", "Auth", null, new AjaxOptions()
        {
