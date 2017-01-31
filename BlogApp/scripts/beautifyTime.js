@@ -17,7 +17,7 @@ function timeElapsed(input, id) {
     
     //debugger;
     if (elapsedTime < 60) {
-        return elapsedTime + " seconds ago";
+        return Math.trunc(elapsedTime) + " seconds ago";
     }
 
     else if (elapsedTime < 3600) {

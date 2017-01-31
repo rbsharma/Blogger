@@ -1,0 +1,33 @@
+﻿@using BlogApp.Models.ViewModel
+@model CommentViewModel
+
+<script>
+    function getUserId() {
+        var userid = JSON.parse(localStorage.getItem('userInfo'))['id'];
+        document.getElementById('userid').value = userid;
+    }
+</script>
+<div>
+    @using (Ajax.BeginForm("AddComment", "User",null, new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "commentsection",
+        InsertionMode = InsertionMode.ReplaceWith,
+        OnBegin = "",
+        OnComplete = ""
+    }, new { id = "commentForm" }))
+    {
+        <hr />
+        @Html.TextAreaFor(m => m.Title, new { @class = "form-control full-width", placeholder = "COMMENT TEXT" });
+        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "failMessage" })
+        @Html.HiddenFor(m => m.userid);
+        <script>getUserId()</script>
+        @Html.HiddenFor(m => m.postid);
+        
+        <br />
+        <input type="submit" class="btn btn-danger no-radius" value="COMMENT" />
+        <input type="reset" class="btn btn-danger no-radius" value="RESET" />
+    }
+
+
+</div>

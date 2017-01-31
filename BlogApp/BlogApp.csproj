@@ -163,6 +163,7 @@
     <None Include="Properties\PublishProfiles\letspost - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\letspost - Web Deploy.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\beautifyTime.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -203,6 +204,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewModel\CommentViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
@@ -231,6 +233,7 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Shared\_Account.cshtml" />
     <Content Include="Views\Shared\_Authentication.cshtml" />
+    <Content Include="Views\Shared\_AddComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

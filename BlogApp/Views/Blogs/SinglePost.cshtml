@@ -7,41 +7,77 @@
 }
 <script src="~/scripts/beautifyTime.js"></script>
 
-@*Left Container*@
-<div class="col-xs-12 col-md-9">
-    <div class="col-xs-12">
-        <div class="panel panel-primary content-singlepost">
-            <div class="panel-heading">
-                <b>@Model.Title</b>
-            </div>
-            <div class="panel-body" style="min-height:280px">
-                @Model.Description <br />
-            </div>
+<div>
+    @*Left Container*@
+    @*setting tempdata.postid to access post id in comment partial view.*@
+    <div class="col-xs-12 col-md-9">
+        <div class="col-xs-12">
+            <div class="panel panel-primary content-singlepost">
+                <div class="panel-heading">
+                    <b>@Model.Title</b>
+                </div>
+                <div class="panel-body" style="min-height:280px">
+                    @Model.Description <br />
+                </div>
 
-            @if (Model.Tags.Count > 0)
-            { <div class="panel-footer">
-                @foreach (var item in Model.Tags)
+                @if (Model.Tags.Count > 0)
                 {
-                <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("Category","Blogs",new { id = item.Id,title = item.Title })'">
-                    @item.Title + @item.Famous
-                </span>
+                    <div class="panel-footer">
+                        @foreach (var item in Model.Tags)
+                        {
+                            <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("Category","Blogs",new { id = item.Id,title = item.Title })'">
+                                @item.Title + @item.Famous
+                            </span>
+                        }
+                    </div>
                 }
-            </div>
-            }
 
-
-            <div class="panel-footer">
-                <b>@Model.User.Name</b> |
-                <b id="@Model.Id">
-                    <script>updateDate('@Model.PublishedAt','@Model.Id')</script>
-                </b>
+                <div class="panel-footer">
+                    <b>@Model.User.Name</b> |
+                    <b id="post @Model.Id">
+                        <script>updateDate('@Model.PublishedAt', 'post @Model.Id')</script>
+                    </b>
+                </div>
             </div>
         </div>
     </div>
+
+
+    @*//Right Container*@
+    <div class="hidden-xs hidden-sm visible-md-block col-md-3 visible-lg-block col-lg-3 fixed-bar-right">
+        @{ Html.RenderPartial("_FixedRightBar");}
+    </div>
 </div>
 
+<div class="col-xs-12 col-md-9">
+    @*comments*@
+    <hr />
+    <h3>COMMENTS</h3>
+    @if (Request.Cookies["auth"] != null)
+    {
+        { Html.RenderPartial("_AddComment", new BlogApp.Models.ViewModel.CommentViewModel(Model.Id)); }
+    }
+    else
+    {
+       <i>Login to comment!</i>
+    }
 
-@*//Right Container*@
-<div class="hidden-xs hidden-sm visible-md-block col-md-3 visible-lg-block col-lg-3 fixed-bar-right">
-    @{ Html.RenderPartial("_FixedRightBar");}
+    <hr />
+    <div id="commentsection">
+        @foreach (var item in Model.Comments.OrderByDescending(x => x.PublishedAt))
+        {
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    @item.Title
+                </div>
+                <div class="panel-footer">
+                    <b id="comment @item.Id">
+                        <script>updateDate('@item.PublishedAt', 'comment @item.Id')</script>
+                    </b>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+
 </div>

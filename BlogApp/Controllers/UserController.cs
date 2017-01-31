@@ -31,6 +31,7 @@ namespace BlogApp.Controllers
             if (ModelState.IsValid)
             {
                 int userId = Convert.ToInt32(Request.Cookies["user"].Value);
+                TempData["userid"] = userId;
                 bool isPostAdded = repo.InsertPost(model.Title, model.Description,userId);
                 if (isPostAdded)
                 {
@@ -41,6 +42,23 @@ namespace BlogApp.Controllers
                 ModelState.AddModelError("PostAddFailure", "An error occured, please try again..");
             }
             return View("Create");
+        }
+
+        [HttpPost]
+        public ActionResult AddComment(CommentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isCommentAdded = repo.InsertComment(model.Title, model.userid,model.postid);
+                if (isCommentAdded)
+                {
+                    ViewBag.addstatus = "Succesfully Added";
+                    return PartialView("_AddComment", "User");
+                    //return View("Create");
+                }
+                ModelState.AddModelError("CommentAddFailure", "An error occured, please try again..");
+            }
+            return PartialView("_AddComment", "User");
         }
 
     }

@@ -69,6 +69,23 @@ namespace BlogApp.BusinessLayer
             }
             return false;
         }
+        public bool InsertComment(string title,int userid,int postid)
+        {
+            if (!string.IsNullOrEmpty(title))
+            {
+                Comment newComment = new Comment();
+
+                newComment.Title = title;
+                newComment.PublishedAt = DateTime.Now;
+                newComment.User = db.Users.Find(userid);
+                newComment.Post = db.Posts.Find(postid);
+
+                db.Comments.Add(newComment);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
 
         public bool Login(string username, string password)
         {
