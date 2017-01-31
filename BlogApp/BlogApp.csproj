@@ -229,6 +229,8 @@
     <Content Include="Views\Shared\_FixedRightBar.cshtml" />
     <Content Include="Views\Auth\_LayoutAuth.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\Shared\_Account.cshtml" />
+    <Content Include="Views\Shared\_Authentication.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

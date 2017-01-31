@@ -1,0 +1,16 @@
+﻿@*if session does not exist*@
+@if (Request.Cookies["auth"] == null)
+{
+    <li>
+        <a href="@Url.Action("Register", "Auth")" class="navbar-brand">
+            <span class="glyphicon glyphicon-user"></span>
+            REGISTER
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Login", "Auth")" class="navbar-brand">
+            <span class="glyphicon glyphicon-lock"></span>
+            LOGIN
+        </a>
+    </li>
+}

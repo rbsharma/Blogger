@@ -20,44 +20,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     @*if session exists*@
-                    @if (Request.Cookies["auth"] != null)
-                    {
-                        <li class="dropdown">
-                            <a id="user_name" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="@Url.Action("Logout", "Auth")" class="">
-                                        <span class="glyphicon glyphicon-lock"></span>
-                                        LOGOUT
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("AddPost", "User")" class="">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                        Add Post
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    }
+                    @{Html.RenderPartial("_Account");}
                     @*if session does not exist*@
-                    @if (Request.Cookies["auth"] == null)
-                    {
-                        <li>
-                            <a href="@Url.Action("Register", "Auth")" class="navbar-brand">
-                                <span class="glyphicon glyphicon-user"></span>
-                                REGISTER
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Login", "Auth")" class="navbar-brand">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                LOGIN
-                            </a>
-                        </li>
-                    }
+                    @{Html.RenderPartial("_Authentication");}
                 </ul>
             </div>
         </div>
