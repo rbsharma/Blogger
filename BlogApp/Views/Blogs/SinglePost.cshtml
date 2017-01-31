@@ -1,9 +1,11 @@
-﻿@using BlogApp.Models
+﻿
+@using BlogApp.Models
 @model Post
 
 @{
     ViewBag.Title = "SinglePost";
 }
+<script src="~/scripts/beautifyTime.js"></script>
 
 @*Left Container*@
 <div class="col-xs-12 col-md-9">
@@ -15,16 +17,24 @@
             <div class="panel-body" style="min-height:280px">
                 @Model.Description <br />
             </div>
-            <div class="panel-footer">
+
+            @if (Model.Tags.Count > 0)
+            { <div class="panel-footer">
                 @foreach (var item in Model.Tags)
                 {
-                    <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("Category","Blogs",new { id = item.Id,title = item.Title })'">
-                        @item.Title + @item.Famous
-                    </span>
+                <span class="btn btn-default tag-custom" onclick="location.href='@Url.Action("Category","Blogs",new { id = item.Id,title = item.Title })'">
+                    @item.Title + @item.Famous
+                </span>
                 }
             </div>
+            }
+
+
             <div class="panel-footer">
-                <b>@Model.User.Name</b>| @Model.PublishedAt
+                <b>@Model.User.Name</b> |
+                <b id="@Model.Id">
+                    <script>updateDate('@Model.PublishedAt','@Model.Id')</script>
+                </b>
             </div>
         </div>
     </div>

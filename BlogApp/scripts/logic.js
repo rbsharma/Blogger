@@ -92,3 +92,4 @@ function getCookie(cookiename) {
     // Return everything after the equal sign, or an empty string if the cookie name not found
     return unescape(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./, "") : "");
 }
+

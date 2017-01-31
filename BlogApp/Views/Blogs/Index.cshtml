@@ -18,7 +18,7 @@
             </b>
         </h2>
     }
-    @if(@ViewBag.logout != null)
+    @if (@ViewBag.logout != null)
     {
         <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4" id="logout_message">
             <span class="">Logged out succesfully!!</span>
@@ -37,7 +37,7 @@
                     @item.Description
                 </div>
                 <div class="panel-footer">
-                    @item.PublishedAt
+                    <b>@item.User.Name</b>  
                 </div>
             </div>
         </div>
