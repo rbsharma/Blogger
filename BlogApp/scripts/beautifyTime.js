@@ -8,10 +8,11 @@ function updateDate(input, id) {
 
 
 function timeElapsed(input, id) {
-    //2017-01-30 22:46:20.217
+    //2017-01-30 22:46:20.217 - sql date(23 char)
+    //2/1/2017 3:05:32 AM - c# date(22 char)
     // current date (0-60)seconds/(1-60)minutes/(1-24)hours/(1-3)daysago/(>3)date 259200
-
-    var published = new Date(input).getTime();
+    
+    var published = new Date(Date.parse(input)).getTime();
     var now = new Date().getTime();
     var elapsedTime = (now - published) / 1000;
     

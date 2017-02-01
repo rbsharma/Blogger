@@ -86,6 +86,10 @@ namespace BlogApp.BusinessLayer
             }
             return false;
         }
+        public List<Comment> GetComments(int postid)
+        {
+            return db.Comments.Where(x => x.Post.Id == postid).ToList();
+        }
 
         public bool Login(string username, string password)
         {

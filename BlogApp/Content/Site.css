@@ -47,12 +47,14 @@ textarea {
     color: white;
     display: inline-block;
 }
+
 .content-singlepost {
     -webkit-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
     -moz-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
     box-shadow: 0 5px 5px rgba(84, 79, 79, 1) !important;
     background-color: #fff;
 }
+
 .content {
     -webkit-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
     -moz-box-shadow: 0 5px 5px rgba(84, 79, 79, 1);
@@ -129,12 +131,23 @@ textarea {
 .failMessage {
     color: red;
 }
-.successMessage{
-    color:forestgreen;
+
+.successMessage {
+    color: forestgreen;
 }
-.full-width{
-    max-width:100% !important;
+
+.full-width {
+    max-width: 100% !important;
 }
-.textarea-custom{
-    min-height:300px;
+
+.textarea-custom {
+    min-height: 300px;
+}
+
+.comment-panel {
+    display:inline-block;
+    min-width:40%;
+    text-align:left;
+    max-width:100%;
+    word-wrap:break-word;
 }

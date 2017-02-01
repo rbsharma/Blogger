@@ -8,13 +8,14 @@
     }
 </script>
 <div>
-    @using (Ajax.BeginForm("AddComment", "User",null, new AjaxOptions()
+    @using (Ajax.BeginForm("AddComment", "User", null, new AjaxOptions()
     {
         HttpMethod = "POST",
-        UpdateTargetId = "commentsection",
+        UpdateTargetId = "",
         InsertionMode = InsertionMode.ReplaceWith,
         OnBegin = "",
-        OnComplete = ""
+        OnSuccess = "updateComments(xhr,status)",
+        OnComplete = "",
     }, new { id = "commentForm" }))
     {
         <hr />
@@ -23,7 +24,7 @@
         @Html.HiddenFor(m => m.userid);
         <script>getUserId()</script>
         @Html.HiddenFor(m => m.postid);
-        
+
         <br />
         <input type="submit" class="btn btn-danger no-radius" value="COMMENT" />
         <input type="reset" class="btn btn-danger no-radius" value="RESET" />
@@ -31,3 +32,14 @@
 
 
 </div>
+
+
+<script>
+    function updateComments(xhr, status) {
+        if (status == "success") {
+            document.getElementById('Title').value= "";
+            document.getElementById('commentsection').innerHTML = xhr.responseText;
+        }
+        
+    }
+</script>

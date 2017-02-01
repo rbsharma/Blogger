@@ -32,7 +32,7 @@ namespace BlogApp.Controllers
             {
                 int userId = Convert.ToInt32(Request.Cookies["user"].Value);
                 TempData["userid"] = userId;
-                bool isPostAdded = repo.InsertPost(model.Title, model.Description,userId);
+                bool isPostAdded = repo.InsertPost(model.Title, model.Description, userId);
                 if (isPostAdded)
                 {
                     ViewBag.addstatus = "Succesfully Added";
@@ -49,16 +49,16 @@ namespace BlogApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool isCommentAdded = repo.InsertComment(model.Title, model.userid,model.postid);
+                bool isCommentAdded = repo.InsertComment(model.Title, model.userid, model.postid);
                 if (isCommentAdded)
                 {
                     ViewBag.addstatus = "Succesfully Added";
-                    return PartialView("_AddComment", "User");
-                    //return View("Create");
+                    List<Comment> postComments = repo.GetComments(model.postid);
+                    return PartialView("_Comments", postComments);
                 }
                 ModelState.AddModelError("CommentAddFailure", "An error occured, please try again..");
             }
-            return PartialView("_AddComment", "User");
+            return PartialView("_AddComment", new CommentViewModel());
         }
 
     }

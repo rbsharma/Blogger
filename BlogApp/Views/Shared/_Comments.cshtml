@@ -1,0 +1,17 @@
+﻿@using BlogApp.Models
+@model IEnumerable<Comment>
+@*<script src="~/scripts/beautifyTime.js"></script>*@
+@foreach (var item in Model.OrderByDescending(x => x.PublishedAt))
+{
+    <div class="panel panel-primary comment-panel">
+        <div class="panel-footer">
+            <span style="color:blue">@item.User.Name</span>
+            <b>&nbsp; @item.Title </b><br />
+
+            <i id="comment @item.Id">
+                <script>updateDate('@item.PublishedAt', 'comment @item.Id')</script>
+            </i>
+        </div>
+    </div>
+    <br />
+}

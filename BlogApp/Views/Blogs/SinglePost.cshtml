@@ -5,7 +5,6 @@
 @{
     ViewBag.Title = "SinglePost";
 }
-<script src="~/scripts/beautifyTime.js"></script>
 
 <div>
     @*Left Container*@
@@ -51,6 +50,7 @@
 
 <div class="col-xs-12 col-md-9">
     @*comments*@
+
     <hr />
     <h3>COMMENTS</h3>
     @if (Request.Cookies["auth"] != null)
@@ -59,25 +59,12 @@
     }
     else
     {
-       <i>Login to comment!</i>
+        <i>Login to comment!</i>
     }
 
     <hr />
     <div id="commentsection">
-        @foreach (var item in Model.Comments.OrderByDescending(x => x.PublishedAt))
-        {
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    @item.Title
-                </div>
-                <div class="panel-footer">
-                    <b id="comment @item.Id">
-                        <script>updateDate('@item.PublishedAt', 'comment @item.Id')</script>
-                    </b>
-                </div>
-            </div>
-            <br />
-        }
+        @{Html.RenderPartial("_Comments", Model.Comments);}
     </div>
 
 </div>

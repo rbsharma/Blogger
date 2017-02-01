@@ -234,6 +234,7 @@
     <Content Include="Views\Shared\_Account.cshtml" />
     <Content Include="Views\Shared\_Authentication.cshtml" />
     <Content Include="Views\Shared\_AddComment.cshtml" />
+    <Content Include="Views\Shared\_Comments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
