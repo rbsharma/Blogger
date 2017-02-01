@@ -53,7 +53,7 @@ namespace BlogApp.BusinessLayer
         {
             return db.Users.Find(userid).Name;
         }
-        public bool InsertPost(string title,string description,int userid)
+        public bool InsertPost(string title,string description,int userid,string tagString)
         {
             if(!(string.IsNullOrEmpty(title) && string.IsNullOrEmpty(description)))
             {
@@ -62,6 +62,24 @@ namespace BlogApp.BusinessLayer
                 newPost.Description = description;
                 newPost.PublishedAt = DateTime.Now;
                 newPost.User = db.Users.Find(userid);
+                tagString.Split(',').ToList();
+                Tag newTag = new Tag();
+                
+                foreach (var item in tagString.Split(','))
+                {
+                    Tag check = db.Tags.FirstOrDefault(x => x.Title == item);
+                    if(check.Id > 0)
+                    {
+                        newPost.Tags.Add(check);
+                        continue;
+                    }
+                    else
+                    {
+                        newTag.Title = item;
+                        newTag.Famous = 0;
+                        
+                    }
+                }
 
                 db.Posts.Add(newPost);
                 db.SaveChanges();

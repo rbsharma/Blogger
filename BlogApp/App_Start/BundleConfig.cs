@@ -15,7 +15,7 @@ namespace BlogApp.App_Start
                     .IncludeDirectory("~/Scripts", "*.js"));
 
             bundles.Add(new StyleBundle("~/bundles/styles")
-                .Include("~/Content/bootstrap.min.css", "~/Content/site.css"));
+                .Include("~/Content/bootstrap.min.css", "~/Content/site.css", "~/Content/bootstrap-tagsinput.css"));
         }
     }
 }

@@ -16,5 +16,8 @@ namespace BlogApp.Models.ViewModel
         [Required(ErrorMessage = "Description is required")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Minimum 1 category is required")]
+        public string TagString { get; set; }
+
     }
 }

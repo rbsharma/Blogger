@@ -27,6 +27,8 @@
                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "failMessage" })
                 <br />
 
+                @Html.TextBoxFor(m => m.TagString, new { @class = "form-control", placeholder = "Add Category", data_role = "tagsinput" });
+                <br /><br />
                 <input type="submit" class="btn btn-success no-radius" value="ADD POST" />
                 <input type="reset" class="btn btn-danger no-radius" value="RESET" /><br />
                 if(@ViewBag.addstatus != null)

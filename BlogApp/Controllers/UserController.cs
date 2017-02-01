@@ -32,7 +32,7 @@ namespace BlogApp.Controllers
             {
                 int userId = Convert.ToInt32(Request.Cookies["user"].Value);
                 TempData["userid"] = userId;
-                bool isPostAdded = repo.InsertPost(model.Title, model.Description, userId);
+                bool isPostAdded = repo.InsertPost(model.Title, model.Description, userId,model.TagString);
                 if (isPostAdded)
                 {
                     ViewBag.addstatus = "Succesfully Added";
