@@ -62,26 +62,37 @@ namespace BlogApp.BusinessLayer
                 newPost.Description = description;
                 newPost.PublishedAt = DateTime.Now;
                 newPost.User = db.Users.Find(userid);
+                db.Posts.Add(newPost);
+                db.SaveChanges();
+
                 tagString.Split(',').ToList();
                 Tag newTag = new Tag();
-                
+                List<Tag> tagsInNewPost = new List<Tag>();
                 foreach (var item in tagString.Split(','))
                 {
                     Tag check = db.Tags.FirstOrDefault(x => x.Title == item);
-                    if(check.Id > 0)
+                    if (check!=null)
                     {
-                        newPost.Tags.Add(check);
+                        tagsInNewPost.Add(check);
                         continue;
                     }
                     else
                     {
                         newTag.Title = item;
                         newTag.Famous = 0;
-                        
+                        tagsInNewPost.Add(newTag);
+
+                        db.Tags.Add(newTag);
+                        db.SaveChanges();
                     }
                 }
+                
+                tagsInNewPost.ForEach(x => x.Posts.Add(newPost));
+                tagsInNewPost.ForEach(x => newPost.Tags.Add(x));
 
-                db.Posts.Add(newPost);
+                db.Posts.Attach(newPost);
+                var entry = db.Entry(newPost);
+                entry.Property(e => e.Tags).IsModified = true;
                 db.SaveChanges();
                 return true;
             }

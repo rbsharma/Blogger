@@ -28,6 +28,7 @@
                 <br />
 
                 @Html.TextBoxFor(m => m.TagString, new { @class = "form-control", placeholder = "Add Category", data_role = "tagsinput" });
+                @Html.ValidationMessageFor(m => m.TagString, "", new { @class = "failMessage" })
                 <br /><br />
                 <input type="submit" class="btn btn-success no-radius" value="ADD POST" />
                 <input type="reset" class="btn btn-danger no-radius" value="RESET" /><br />
