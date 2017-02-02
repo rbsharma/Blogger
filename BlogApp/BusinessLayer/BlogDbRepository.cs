@@ -57,15 +57,6 @@ namespace BlogApp.BusinessLayer
         {
             if(!(string.IsNullOrEmpty(title) && string.IsNullOrEmpty(description)))
             {
-                Post newPost = new Post();
-                newPost.Title = title;
-                newPost.Description = description;
-                newPost.PublishedAt = DateTime.Now;
-                newPost.User = db.Users.Find(userid);
-                db.Posts.Add(newPost);
-                db.SaveChanges();
-
-                tagString.Split(',').ToList();
                 Tag newTag = new Tag();
                 List<Tag> tagsInNewPost = new List<Tag>();
                 foreach (var item in tagString.Split(','))
@@ -86,13 +77,15 @@ namespace BlogApp.BusinessLayer
                         db.SaveChanges();
                     }
                 }
-                
-                tagsInNewPost.ForEach(x => x.Posts.Add(newPost));
-                tagsInNewPost.ForEach(x => newPost.Tags.Add(x));
 
-                db.Posts.Attach(newPost);
-                var entry = db.Entry(newPost);
-                entry.Property(e => e.Tags).IsModified = true;
+
+                Post newPost = new Post();
+                newPost.Title = title;
+                newPost.Description = description;
+                newPost.PublishedAt = DateTime.Now;
+                newPost.User = db.Users.Find(userid);
+                newPost.Tags = tagsInNewPost;
+                db.Posts.Add(newPost);
                 db.SaveChanges();
                 return true;
             }
