@@ -15,6 +15,7 @@ namespace BlogApp.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public int OTP { get; set; }
 
 
         public virtual ICollection<Post> Posts { get; set; }

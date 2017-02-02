@@ -29,6 +29,8 @@
             @Html.PasswordFor(m => m.Password, new { @class = "form-control col-centered", placeholder = "Password" });
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "failMessage" })
             <br />
+            
+            <br />
             <input type="submit" class="btn btn-danger no-radius" value="LOGIN" />
 
             @Ajax.ActionLink("REGISTER", "Register", "Auth", null, new AjaxOptions()
@@ -40,5 +42,14 @@
            OnComplete = "hideOverlay"
        }, new { @class = "btn btn-danger no-radius" })
         }
+        <br />
+        @Ajax.ActionLink("Forgot Password?", "Forgot", "Auth", null, new AjaxOptions()
+   {
+       HttpMethod = "GET",
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "target",
+       OnBegin = "showOverlay",
+       OnComplete = "hideOverlay"
+   }, new { @class = "" })
     </div>
 </div>

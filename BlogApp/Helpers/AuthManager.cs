@@ -80,5 +80,29 @@ namespace BlogApp.Helpers
             return repo.GetUserName(id);
         }
 
+        public static bool GenerateUniqueId(string email)
+        {
+            int isgenerated = repo.generateUniqueId(email);
+            if (isgenerated>0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool VerifyUniqueId(int unique_id)
+        {
+            bool keyExists = repo.verifyUniqueId(unique_id);
+            if (keyExists)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool ResetPassword(string password)
+        {
+            return repo.ResetPassword(password);
+        }
     }
 }

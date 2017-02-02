@@ -18,31 +18,36 @@ namespace BlogApp.BusinessLayer
                 {
                     Name = "Rajesh",
                     Email = "rajlife2011@gmail.com",
-                    Password = Hasher.GetSha256Hash("boungaboyz")
+                    Password = Hasher.GetSha256Hash("boungaboyz"),
+                    OTP = 0
                 },
                 new User()
                 {
                     Name = "Martin",
                     Email = "martin@gmail.com",
-                    Password = Hasher.GetSha256Hash("boungaboyz")
+                    Password = Hasher.GetSha256Hash("boungaboyz"),
+                    OTP = 0
                 },
                 new User()
                 {
                     Name = "Alan Sen",
                     Email = "alan@gmail.com",
-                    Password = Hasher.GetSha256Hash("password")
+                    Password = Hasher.GetSha256Hash("password"),
+                    OTP = 0
                 },
                 new User()
                 {
                     Name = "Rick Martin",
                     Email = "rick@hotmail.com",
-                    Password = Hasher.GetSha256Hash("password")
+                    Password = Hasher.GetSha256Hash("password"),
+                    OTP = 0
                 },
                 new User()
                 {
                     Name = "Carlos Martin",
                     Email = "carlos@hotmail.com",
-                    Password = Hasher.GetSha256Hash("password")
+                    Password = Hasher.GetSha256Hash("password"),
+                    OTP = 0
                 },
             };
 

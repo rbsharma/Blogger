@@ -1,0 +1,34 @@
+﻿@using BlogApp.Models.ViewModel
+@model OtpViewModel
+@{
+    ViewBag.Title = "OTP";
+    Layout = "~/Views/Auth/_LayoutAuth.cshtml";
+}
+<div id="target">
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 text-center content-login" style="border:solid;padding:15px;">
+        <div id="overlayDiv" class="overlay" style="display:none">
+            <img src="~/Images/loader.gif" />
+        </div>
+        <h2>FORGOT PASSWORD</h2>
+
+        @using (Ajax.BeginForm("VerifyOTP", "Auth", null, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "target",
+            InsertionMode = InsertionMode.Replace,
+            OnBegin = "showOverlay",
+            OnComplete = "hideOverlay"
+        }, new { id = "otpForm" }))
+        {
+
+            <hr />
+
+            @Html.TextBoxFor(m=>m.OTP, new { @class = "form-control col-centered", placeholder = "Enter registered email" });
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "failMessage" })
+            <br />
+
+            <input type="submit" class="btn btn-danger no-radius" value="EMAIL OTP" />
+        }
+    </div>
+</div>
+

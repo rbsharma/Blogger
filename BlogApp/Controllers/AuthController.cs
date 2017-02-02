@@ -95,6 +95,49 @@ namespace BlogApp.Controllers
             string name = AuthManager.Username(Convert.ToInt32(userid));
             return Json(name);
         }
+
+        public PartialViewResult Forgot()
+        {
+            return PartialView("_Forgot",new ForgotViewModel());
+        }
+        public ActionResult SendMail(ForgotViewModel model)
+        {
+            //if (ModelState.IsValid)
+            //{
+            //    if (AuthManager.GenerateUniqueId(model.Email))
+            //    {
+            //        return PartialView("_OTP");
+            //    }               
+            //}
+            return PartialView("_OTP");
+            //return PartialView("_Forgot");
+        }
+        public ActionResult VerifyOTP(OtpViewModel model)
+        {
+
+            //if (ModelState.IsValid)
+            //{
+            //    if (AuthManager.VerifyUniqueId(model.OTP))
+            //    {
+            //        return PartialView("_ResetPassword");
+            //    }
+            //}
+            return PartialView("_ResetPassword");
+        }
+
+        public ActionResult ResetPassword(PasswordResetViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isResetDone = AuthManager.ResetPassword(model.Password);
+                if (isResetDone)
+                {
+                    return RedirectToAction("Login", "Auth");
+                }
+                ModelState.AddModelError("ResetFailure", "Something is wrong, please try again later.");
+            }
+            return PartialView("_ResetPassword");
+        }
     }
 }
 

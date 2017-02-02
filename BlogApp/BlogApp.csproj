@@ -201,12 +201,19 @@
     <Compile Include="Migrations\201701271727018_InitialCreate.Designer.cs">
       <DependentUpon>201701271727018_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702021255477_OTPcolumnUSERtable.cs" />
+    <Compile Include="Migrations\201702021255477_OTPcolumnUSERtable.Designer.cs">
+      <DependentUpon>201702021255477_OTPcolumnUSERtable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\CommentViewModel.cs" />
+    <Compile Include="Models\ViewModel\ForgotViewModel.cs" />
+    <Compile Include="Models\ViewModel\OtpViewModel.cs" />
+    <Compile Include="Models\ViewModel\PasswordResetViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
@@ -237,6 +244,9 @@
     <Content Include="Views\Shared\_Authentication.cshtml" />
     <Content Include="Views\Shared\_AddComment.cshtml" />
     <Content Include="Views\Shared\_Comments.cshtml" />
+    <Content Include="Views\Shared\_Forgot.cshtml" />
+    <Content Include="Views\Shared\_OTP.cshtml" />
+    <Content Include="Views\Shared\_ResetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -250,6 +260,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701271727018_InitialCreate.resx">
       <DependentUpon>201701271727018_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702021255477_OTPcolumnUSERtable.resx">
+      <DependentUpon>201702021255477_OTPcolumnUSERtable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
