@@ -48,11 +48,8 @@
     </div>
 </div>
 
-<div class="col-xs-12 col-md-9">
+<div class="col-xs-12 col-md-9" style="padding:30px">
     @*comments*@
-
-    <hr />
-    <h3>COMMENTS</h3>
     @if (Request.Cookies["auth"] != null)
     {
         { Html.RenderPartial("_AddComment", new BlogApp.Models.ViewModel.CommentViewModel(Model.Id)); }
