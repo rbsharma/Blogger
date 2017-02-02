@@ -16,29 +16,32 @@ function timeElapsed(input, id) {
     var now = new Date().getTime();
     var elapsedTime = (now - published) / 1000;
     
-    //debugger;
-    if (elapsedTime < 60) {
-        return Math.trunc(elapsedTime) + " seconds ago";
-    }
+    if (elapsedTime > 0) {
+        //debugger;
+        if (elapsedTime < 60) {
+            return Math.trunc(elapsedTime) + " seconds ago";
+        }
 
-    else if (elapsedTime < 3600) {
-        elapsedTime = elapsedTime / 60;
-        elapsedTime = Math.trunc(elapsedTime);
-        return elapsedTime.toString() + (elapsedTime === 1 ? " minute ago" : " minutes ago");
+        else if (elapsedTime < 3600) {
+            elapsedTime = elapsedTime / 60;
+            elapsedTime = Math.trunc(elapsedTime);
+            return elapsedTime.toString() + (elapsedTime === 1 ? " minute ago" : " minutes ago");
+        }
+        else if (elapsedTime > 3600 && elapsedTime < 86400) {
+            elapsedTime = elapsedTime / 3600;
+            elapsedTime = Math.trunc(elapsedTime);
+            return elapsedTime.toString() + (elapsedTime === 1 ? " hour ago" : " hours ago");
+        }
+        else if (elapsedTime > 86400 && elapsedTime < 259200) {
+            elapsedTime = elapsedTime / 86400;
+            elapsedTime = Math.trunc(elapsedTime);
+            return elapsedTime.toString() + (elapsedTime === 1 ? " day ago" : " days ago");
+        }
+        else if (elapsedTime > 259200) {
+            return input.toLocaleDateString();
+        } else {
+            return "";
+        }
     }
-    else if (elapsedTime > 3600 && elapsedTime < 86400) {
-        elapsedTime = elapsedTime / 3600;
-        elapsedTime = Math.trunc(elapsedTime);
-        return elapsedTime.toString() + (elapsedTime === 1 ? " hour ago" : " hours ago");
-    }
-    else if (elapsedTime > 86400 && elapsedTime < 259200) {
-        elapsedTime = elapsedTime / 86400;
-        elapsedTime = Math.trunc(elapsedTime);
-        return elapsedTime.toString() + (elapsedTime === 1 ? " day ago" : " days ago");
-    }
-    else if (elapsedTime > 259200) {
-        return input.toLocaleDateString();
-    } else {
-        return "";
-    }
+    return "";
 }

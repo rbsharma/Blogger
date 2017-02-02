@@ -82,10 +82,9 @@ function hideOverlayandRedirect(data) {
             userInfo.name = result;
             userInfo.id = getCookie('user');
             localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            setTimeout(window.location.reload(), 1000);
         }
-    });
-    setTimeout(window.location.reload(), 1000);
-    
+    });    
 }
 
 //get a cookie by it's name on client side;
