@@ -57,14 +57,15 @@ namespace BlogApp.BusinessLayer
         {
             if(!(string.IsNullOrEmpty(title) && string.IsNullOrEmpty(description)))
             {
-                Tag newTag = new Tag();
+                Tag newTag  = new Tag();
+                Tag exists = new Tag();
                 List<Tag> tagsInNewPost = new List<Tag>();
                 foreach (var item in tagString.Split(','))
                 {
-                    Tag check = db.Tags.FirstOrDefault(x => x.Title == item);
-                    if (check!=null)
+                    exists = db.Tags.FirstOrDefault(x => x.Title == item);
+                    if (exists!=null)
                     {
-                        tagsInNewPost.Add(check);
+                        tagsInNewPost.Add(exists);
                         continue;
                     }
                     else
@@ -146,6 +147,21 @@ namespace BlogApp.BusinessLayer
             return exists;
         }
 
+        public bool RemovePost(int postid)
+        {
+            Post postToRemove = db.Posts.Find(postid);
+            if(postToRemove != null)
+            {
+                List<Tag> tagsToRemove = postToRemove.Tags.Where(x => x.Posts.Count == 1).ToList();
+                List<Comment> commentsToRemove = postToRemove.Comments.ToList();
 
+                tagsToRemove.ForEach(x => db.Tags.Remove(x));
+                commentsToRemove.ForEach(x => db.Comments.Remove(x));                
+                db.Posts.Remove(postToRemove);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

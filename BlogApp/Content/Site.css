@@ -145,9 +145,22 @@ textarea {
 }
 
 .comment-panel {
-    display:inline-block;
-    min-width:40%;
-    text-align:left;
-    max-width:100%;
-    word-wrap:break-word;
+    display: inline-block;
+    min-width: 40%;
+    text-align: left;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.delete-button {
+    float: right !important;
+    font-size: 140% !important;
+    color: white !important;
+}
+.delete-button :hover,.delete-button:focus{
+    color:black !important;
 }

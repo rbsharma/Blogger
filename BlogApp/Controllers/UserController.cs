@@ -60,6 +60,19 @@ namespace BlogApp.Controllers
             }
             return PartialView("_AddComment", new CommentViewModel());
         }
+        
+        public ActionResult DeletePost(int postid)
+        {
+            if (postid > 0)
+            {
+                bool IsPostRemoved = repo.RemovePost(postid);
+                if (IsPostRemoved)
+                {
+                    return RedirectToAction("Index", "Blogs");
+                }
+            }
+            return RedirectToAction("Blog", "Blogs", postid);
+        }
 
     }
 }

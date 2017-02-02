@@ -14,6 +14,14 @@
             <div class="panel panel-primary content-singlepost">
                 <div class="panel-heading">
                     <b>@Model.Title</b>
+                    
+                    @if (Request.Cookies["auth"] != null && (Convert.ToInt32(Request.Cookies["user"].Value) == Model.User.Id))
+                    {
+                        <a href="#" class="delete-button" data-toggle="tooltip" data-placement="bottom" title="Delete this post?">
+                            <span class="glyphicon glyphicon-remove clickable" 
+                                  onclick="location.href='@Url.Action("DeletePost", "User",new { postid=Model.Id})'"></span>
+                        </a>
+                    }
                 </div>
                 <div class="panel-body" style="min-height:280px">
                     @Model.Description <br />

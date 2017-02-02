@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    //initializing tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+
     //Displaying logout successfull message;
     $("#logout_message").css({ "display": "none", "transition": "2s" });
     
