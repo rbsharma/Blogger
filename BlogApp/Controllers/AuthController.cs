@@ -102,27 +102,27 @@ namespace BlogApp.Controllers
         }
         public ActionResult SendMail(ForgotViewModel model)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    if (AuthManager.GenerateUniqueId(model.Email))
-            //    {
-            //        return PartialView("_OTP");
-            //    }               
-            //}
-            return PartialView("_OTP");
-            //return PartialView("_Forgot");
+            if (ModelState.IsValid)
+            {
+                if (AuthManager.GenerateUniqueId(model.Email))
+                {
+                    ViewBag.sentmail = "If " + model.Email + " is linked to your account then an OTP will be sent to provided email.";
+                    return PartialView("_OTP");
+                }
+            }
+            return PartialView("_Forgot");
         }
         public ActionResult VerifyOTP(OtpViewModel model)
         {
-
-            //if (ModelState.IsValid)
-            //{
-            //    if (AuthManager.VerifyUniqueId(model.OTP))
-            //    {
-            //        return PartialView("_ResetPassword");
-            //    }
-            //}
-            return PartialView("_ResetPassword");
+            if (ModelState.IsValid)
+            {
+                if (AuthManager.VerifyUniqueId(model.OTP))
+                {
+                    return PartialView("_ResetPassword");
+                }
+                ModelState.AddModelError("OTPFailure", "Invalid OTP");
+            }
+            return PartialView("_OTP");
         }
 
         public ActionResult ResetPassword(PasswordResetViewModel model)

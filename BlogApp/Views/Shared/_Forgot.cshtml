@@ -7,9 +7,9 @@
 <div id="target">
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 text-center content-login" style="border:solid;padding:15px;">
         <div id="overlayDiv" class="overlay" style="display:none">
-            <img src="~/Images/loader.gif" />
+            @*<img src="~/Images/loader.gif" />*@
         </div>
-        <h2>FORGOT PASSWORD</h2>
+        <h2>GENERATE OTP</h2>
 
         @using (Ajax.BeginForm("SendMail", "Auth", null, new AjaxOptions()
         {

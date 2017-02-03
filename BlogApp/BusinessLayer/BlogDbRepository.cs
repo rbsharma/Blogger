@@ -166,50 +166,64 @@ namespace BlogApp.BusinessLayer
 
         public int generateUniqueId(string email)
         {
-            
-            User sadUser = db.Users.FirstOrDefault(x => x.Email == email);
-            if (sadUser != null)
+            using (BlogDbContext dbc = new BlogDbContext())
             {
-                Random rd = new Random();
-                int random = rd.Next(100000, 999999);
-                sadUser.OTP = random;
-                db.Entry(sadUser).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                SendMail(sadUser.Email, "Reset Password",random.ToString());
-                return random;
+                User sadUser = dbc.Users.FirstOrDefault(x => x.Email == email);
+                if (sadUser != null)
+                {
+                    Random rd = new Random();
+                    int random = rd.Next(100000, 999999);
+                    sadUser.OTP = random;
+                    dbc.Entry(sadUser).State = System.Data.Entity.EntityState.Modified;
+                    dbc.SaveChanges();
+                    SendMail(sadUser.Email, "Reset Password", random.ToString());
+                    return random;
+                }
+                return 0;
             }
-            return 0;
         }
 
         public bool verifyUniqueId(int key)
         {
-            User sadUser = db.Users.FirstOrDefault(x => x.OTP == key);
-            if(sadUser!= null)
+            using (BlogDbContext dbc = new BlogDbContext())
             {
-                HttpCookie temp = new HttpCookie("temp");
-                temp.Value = key.ToString();
-                temp.Expires = DateTime.Now.AddDays(1);
-                HttpContext.Current.Response.Cookies.Add(temp);
+                User sadUser = dbc.Users.FirstOrDefault(x => x.OTP == key);
+                if (sadUser != null)
+                {
+                    HttpCookie temp = new HttpCookie("temp");
+                    temp.Value = key.ToString();
+                    temp.Expires = DateTime.Now.AddDays(1);
+                    HttpContext.Current.Response.Cookies.Add(temp);
 
-                return true;
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         public bool ResetPassword(string Password)
         {
             HttpCookie tempCookie = HttpContext.Current.Request.Cookies["temp"];
-            
+
             if (tempCookie != null)
             {
-                int key = Convert.ToInt32(tempCookie.Value);
-                User sadUser = db.Users.FirstOrDefault(x => x.OTP == key);
-                sadUser.Password = Hasher.GetSha256Hash(Password);
+                using (BlogDbContext dbc = new BlogDbContext())
+                {
+                    int key = Convert.ToInt32(tempCookie.Value);
+                    User sadUser = dbc.Users.FirstOrDefault(x => x.OTP == key);
+                    sadUser.Password = Hasher.GetSha256Hash(Password);
+                    dbc.Entry(sadUser).State = System.Data.Entity.EntityState.Modified;
+                    dbc.SaveChanges();
 
-                tempCookie.Expires = DateTime.Now.AddDays(-1);
-                HttpContext.Current.Response.Cookies.Add(tempCookie);
+                    sadUser.OTP = 0;
+                    dbc.Entry(sadUser).State = System.Data.Entity.EntityState.Modified;
+                    dbc.SaveChanges();
 
-                return true;
+                    tempCookie.Expires = DateTime.Now.AddDays(-1);
+                    HttpContext.Current.Response.Cookies.Add(tempCookie);
+
+                    return true;
+                }
             }
             return false;
         }
