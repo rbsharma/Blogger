@@ -34,6 +34,14 @@
             <br />
 
             <input type="submit" class="btn btn-danger no-radius" value="VERIFY OTP" />
+            @Ajax.ActionLink("Regenerate OTP", "Forgot", "Auth", null, new AjaxOptions()
+       {
+           HttpMethod = "GET",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "target",
+           OnBegin = "showOverlay",
+           OnComplete = "hideOverlay"
+       }, new { @class = "btn btn-danger no-radius" })
         }
     </div>
 </div>
