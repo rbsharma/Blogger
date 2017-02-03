@@ -98,17 +98,15 @@ namespace BlogApp.Controllers
 
         public PartialViewResult Forgot()
         {
-            return PartialView("_Forgot",new ForgotViewModel());
+            return PartialView("_Forgot", new ForgotViewModel());
         }
         public ActionResult SendMail(ForgotViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (AuthManager.GenerateUniqueId(model.Email))
-                {
-                    ViewBag.sentmail = "If " + model.Email + " is linked to your account then an OTP will be sent to provided email.";
-                    return PartialView("_OTP");
-                }
+                AuthManager.GenerateUniqueId(model.Email);
+                ViewBag.sentmail = model.Email;
+                return PartialView("_OTP");
             }
             return PartialView("_Forgot");
         }
@@ -132,6 +130,7 @@ namespace BlogApp.Controllers
                 bool isResetDone = AuthManager.ResetPassword(model.Password);
                 if (isResetDone)
                 {
+                    ViewBag.resetpassword = "Password updated successfully, login to continue";
                     return RedirectToAction("Login", "Auth");
                 }
                 ModelState.AddModelError("ResetFailure", "Something is wrong, please try again later.");

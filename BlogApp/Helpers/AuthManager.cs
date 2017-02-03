@@ -66,7 +66,10 @@ namespace BlogApp.Helpers
             userCookie.Expires = DateTime.Now.AddDays(-1);
 
             HttpCookie sessionCookie = HttpContext.Current.Request.Cookies["ASP.NET_SessionId"];
-            sessionCookie.Expires = DateTime.Now.AddDays(-1);
+            if (sessionCookie != null)
+            {
+                sessionCookie.Expires = DateTime.Now.AddDays(-1);
+            }
 
             HttpContext.Current.Response.Cookies.Add(authCookie);
             HttpContext.Current.Response.Cookies.Add(sessionCookie);

@@ -11,6 +11,12 @@
             @*<img src="~/Images/loader.gif" />*@
         </div>
         <h2>LOGIN</h2>
+        @if (ViewBag.resetpassword != null)
+        {
+            <span class="text-success">
+                @ViewBag.resetpassword
+            </span>
+        }
 
         @using (Ajax.BeginForm("Login", "Auth", null, new AjaxOptions()
         {

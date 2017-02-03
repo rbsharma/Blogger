@@ -12,7 +12,9 @@
         <h2>VERIFY OTP</h2>
         @if(ViewBag.sentmail!=null)
         {
-            <span class="successMessage">@ViewBag.sentmail</span>
+            <span class="text-success">
+                If <b style="color:#ab2662">@ViewBag.sentmail</b> is present in our database, an OTP will be sent to this provided email!!
+            </span>
         }
         @using (Ajax.BeginForm("VerifyOTP", "Auth", null, new AjaxOptions()
         {
@@ -28,7 +30,7 @@
 
             @Html.TextBoxFor(m=>m.OTP, new { @class = "form-control col-centered", placeholder = "ENTER OTP" });
             @Html.ValidationMessageFor(m => m.OTP, "", new { @class = "failMessage" })
-            @Html.ValidationMessage("OTPFailure")
+            @Html.ValidationMessage("OTPFailure", new { @class = "failMessage" })
             <br />
 
             <input type="submit" class="btn btn-danger no-radius" value="VERIFY OTP" />
