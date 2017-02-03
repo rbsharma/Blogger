@@ -3,7 +3,10 @@ using BlogApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
+using System.Web.Configuration;
 
 namespace BlogApp.BusinessLayer
 {
@@ -176,7 +179,8 @@ namespace BlogApp.BusinessLayer
                     sadUser.OTP = random;
                     dbc.Entry(sadUser).State = System.Data.Entity.EntityState.Modified;
                     dbc.SaveChanges();
-                    SendMail(sadUser.Email, "Reset Password", random.ToString());
+                    string senderAddress = WebConfigurationManager.AppSettings["senderAddress"];
+                    SendMail(sadUser.Email, senderAddress, "Reset Password", sadUser.Name, random.ToString());
                     return random;
                 }
                 return 0;
@@ -228,9 +232,47 @@ namespace BlogApp.BusinessLayer
             return false;
         }
 
-        public void SendMail(string recepient,string Subject,string uniqueKey)
+        public void SendMail(string recepientAddress,string senderAddress,string subject, string username, string uniqueKey)
         {
+            //string rootPath = Server.MapPath("~");
 
+            MailMessage newMail = new MailMessage(senderAddress, recepientAddress);
+
+            //Subject
+            newMail.Subject = subject;
+
+            //Body
+            newMail.IsBodyHtml = true;
+            StringBuilder Body = new StringBuilder();
+            Body.Append("Hi ,<br/><br/>");
+            Body.Append(username);
+            Body.Append("<br/><br/>");
+            Body.Append("Your OTP to reset password is " + uniqueKey);
+            Body.Append("<br/><br/>");
+            Body.Append("Regards,<br/>" + "MyPost Team");
+            newMail.Body = Body.ToString();
+
+            //attachements
+            //newMail.Attachments.Add(new Attachment(rootPath + @"Attachements\Attachement.txt"));
+
+
+            //Handle SMTP
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = senderAddress,
+                Password = WebConfigurationManager.AppSettings["senderPassword"]
+            };
+            smtpClient.EnableSsl = true;
+
+            try
+            {
+                smtpClient.Send(newMail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }
