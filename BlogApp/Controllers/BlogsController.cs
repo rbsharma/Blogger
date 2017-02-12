@@ -8,6 +8,7 @@ using BlogApp.Models;
 
 namespace BlogApp.Controllers
 {
+    [HandleError]
     public class BlogsController : Controller
     {
         BlogDbRepository repo = new BlogDbRepository();

@@ -11,6 +11,7 @@ using BlogApp.BusinessLayer;
 namespace BlogApp.Controllers
 {
     [CustomAuthorization]
+    [HandleError]
     public class UserController : Controller
     {
         BlogDbRepository repo = new BlogDbRepository();

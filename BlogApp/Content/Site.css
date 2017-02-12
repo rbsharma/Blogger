@@ -16,6 +16,7 @@
 }
 
 .sticky-footer {
+    position: relative !important;
     bottom: 0;
     width: 100%;
 }

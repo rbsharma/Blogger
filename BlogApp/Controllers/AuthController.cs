@@ -11,6 +11,7 @@ using System.Web.Routing;
 namespace BlogApp.Controllers
 {
     [AllowAnonymous]
+    [HandleError]
     public class AuthController : Controller
     {
         [HttpGet]

@@ -189,6 +189,7 @@
     <Compile Include="BusinessLayer\BlogDbRepository.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +248,9 @@
     <Content Include="Views\Shared\_Forgot.cshtml" />
     <Content Include="Views\Shared\_OTP.cshtml" />
     <Content Include="Views\Shared\_ResetPassword.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <None Include="Views\Error\NotFound.cshtml" />
+    <None Include="Views\Error\InternalError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
