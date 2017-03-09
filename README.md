@@ -1,5 +1,6 @@
 A Sample Blog App Written in ASP.NET MVC
-The running version can be viewed on http://letspost.azurewebsites.net/
+The running version is hosted on azure and can be viewed at http://letspost.azurewebsites.net/
+
 
 This is a sample blog app written in MVC covering core features of it.
 
